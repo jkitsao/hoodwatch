@@ -1,0 +1,15 @@
+{% extends "mtaa/base.html" %}
+{% block content %}
+<h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}"><strong><p>Log In Again</p></strong></a>
+        </small>
+    </div>
+    <style>
+    a{
+        font-size: 125%;
+    }
+    </style>
+{% endblock content %}
+
