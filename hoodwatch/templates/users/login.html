@@ -1,22 +1,52 @@
-{% extends "mtaa/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-<div class="content-section">
-    <form method="POST" action="">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Login</legend>
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Sign In</button>
-        </div>
-    </form>
-    <div class="border-top pt-3">
-        <small class="text-muted">Need An Account?
-            <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
-        </small>
-    </div>
-</div>
-{% endblock content %}
+{%extends "registration/base.html"%} {% load bootstrap4 %} {% block content %}
+<div
+  class="container-fluid"
+  style="font-family: 'Raleway', sans-serif; padding-top: 80px"
+>
+  <div class="container">
+    <!-- Empty div -->
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-4">
+        {% if form.errors %}
+        <p>Password or Username is incorrect</p>
+        {% endif %}
+        <div
+          class="panel panel-default"
+          style="border: 1px solid rgb(231, 231, 231); border-radius: 5px"
+        >
+          <div
+            class="panel-heading"
+            style="background-color: rgb(231, 231, 231); padding: 10px"
+          >
+            <h2><strong>Neigbourhood Watch</strong></h2>
+            <h5 class="text-center">Sign In</h5>
+          </div>
+          <div class="panel-body" style="padding: 10px">
+            <form action="/accounts/login/" method="post">
+              {% csrf_token %} {% bootstrap_form form%}
 
+              <div class="form-group">
+                <input
+                  type="submit"
+                  class="btn btn-primary btn-sm"
+                  value="Login"
+                />
+              </div>
+
+              <input type="hidden" name="next" value="{{next}}" />
+            </form>
+            <a href="/accounts/register">REGISTER</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- empty div -->
+    <div class="col-md-2"></div>
+  </div>
+  <div class="container-fluid">
+    <img src="/static/images/streets-graphic-brn.png" alt="" width="100%;" />
+  </div>
+</div>
+
+{% endblock %}
